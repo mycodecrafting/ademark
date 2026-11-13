@@ -134,9 +134,7 @@
       "/Users/ademark/.local/share/claude/versions/"
     ]
   },
-  "orchestrationTrigger": {
-    "notCalibrated": "no documented trigger line for child workspaces yet"
-  },
+  "orchestrationTrigger": "Use child workspaces: one per work item, then merge each into this branch.",
   "notes": [
     "Calibrated 2026-11-12 in a UTM macOS 26.6.2 VM (VirtualMac2,1, 10 vCPU, 16 GB, display 1728x1117 pt HiDPI, Dock auto-hidden so the window reaches 1000 pt), local build 0.6.0+commit.2fc858f6, ad-hoc signed.",
     "openProject: recur-cli open <worktree> finds or creates the project and opens its Working copy with one 'New chat' tab in Agent mode, Opus 5.5, High (from the seed). cmd+1 (Focus agent) focuses the composer; probe-region then read 299,900,547,50.",
@@ -145,6 +143,11 @@
     "A11: the seed thread and the long thread are consecutive tabs, long last. cmd+alt+left (Previous Tab) reaches the seed thread, cmd+alt+right (Next Tab) the long one (checked with two tabs).",
     "Seed: recur.db (settings: Agent model claude-code/claude-opus-5-5 effort high, bypassPermissions true, Simplify at factory default on; no projects), local-storage.json, cursor-attribution.json. shell.json and window.json are left out so launch opens the default view and the harness sizes the window.",
     "Masks stay empty: GPUI repaints the whole window.",
-    "threadRect 285,115,575,760 is the whole message column: Recur lays a thread out from the top, so a short answer sits near y 220 (smoke 2026-11-12: A3 and A4 timed out with the old bottom-half rect 290,480,560,390). steps.quit is empty (AppleScript quit): a keys step needs a pid, and A1 quits when the app may not be running."
-  ]
+    "threadRect 285,115,575,760 is the whole message column: Recur lays a thread out from the top, so a short answer sits near y 220 (smoke 2026-11-12: A3 and A4 timed out with the old bottom-half rect 290,480,560,390). steps.quit is empty (AppleScript quit): a keys step needs a pid, and A1 quits when the app may not be running.",
+    "Orchestration (C1): the trigger is the line documented in Recur docs, Concepts > Chat modes > Child workspaces. Workers are child workspaces: their own worktrees under ~/.recur/worktrees and their own claude sessions; Claude Code subagents (Agent tool) are disallowed in Recur chats."
+  ],
+  "orchestration": {
+    "settings": [],
+    "workers": "sessions"
+  }
 }
