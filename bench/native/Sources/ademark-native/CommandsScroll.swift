@@ -17,6 +17,9 @@ enum ScrollWheel {
     static func post(lines: Int) {
         guard let event = CGEvent(scrollWheelEvent2Source: source, units: .line, wheelCount: 1,
                                   wheel1: Int32(clamping: lines), wheel2: 0, wheel3: 0) else { return }
+        // The HID state keeps the modifiers of the last synthetic key combo (cmd+alt+right in A11), and an app that
+        // zooms on cmd+scroll (Recur) zoomed out to 50% for the rest of the block.
+        event.flags = []
         event.post(tap: .cghidEventTap)
     }
 }
