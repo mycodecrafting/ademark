@@ -64,6 +64,24 @@ export function parseDisplay(json: string): DisplayInfo {
   return { width, height, scale, refresh_hz: refresh };
 }
 
+// simplify: a macOS VM (Virtualization.framework) reports no display to system_profiler; displayplacer still sees it.
+function readDisplay(): DisplayInfo {
+  try {
+    return parseDisplay(run(["system_profiler", "SPDisplaysDataType", "-json"]));
+  } catch (error) {
+    const list = tryRun(["/opt/homebrew/bin/displayplacer", "list"]);
+    const res = list?.match(/^Resolution: (\d+)x(\d+)/m);
+    if (!list || !res) throw error;
+    const hz = list.match(/^Hertz: (\d+)/m);
+    return {
+      width: Number(res[1]),
+      height: Number(res[2]),
+      scale: /^Scaling: on/m.test(list) ? 2 : 1,
+      refresh_hz: hz ? Number(hz[1]) : 60,
+    };
+  }
+}
+
 export function parseHardware(model: string, memoryBytes: string, chip: string): Manifest["hardware"] {
   const bytes = Number(memoryBytes);
   if (!Number.isFinite(bytes) || bytes <= 0) throw new Error(`bad hw.memsize: ${memoryBytes}`);
@@ -89,7 +107,7 @@ export async function collectManifest(options: ManifestOptions): Promise<Manifes
   const hardware = parseHardware(hw[0] ?? "", hw[1] ?? "", hw[2] ?? "");
 
   const macosBuild = run(["sw_vers", "-buildVersion"]);
-  const display = parseDisplay(run(["system_profiler", "SPDisplaysDataType", "-json"]));
+  const display = readDisplay();
 
   const cliVersions: Record<string, string> = {};
   const claude = tryRun(["claude", "--version"]);
