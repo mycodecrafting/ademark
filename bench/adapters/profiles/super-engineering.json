@@ -59,7 +59,7 @@
       {
         "kind": "run",
         "argv": [
-          "/Applications/super.engineering.app/Contents/MacOS/sc",
+          "/Applications/super.engineering.app/Contents/MacOS/se",
           "workspace",
           "open",
           "${worktree}",
