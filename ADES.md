@@ -829,7 +829,7 @@ Adapter `codex-app`:
 | Claude runs via | `claude -p --output-format stream-json`, one process per turn |
 | Codex runs via | `codex app-server` |
 | Adds to context | an appended system prompt for the chat mode, and the `recur` MCP server (`--strict-mcp-config`); B2 shows sizes |
-| Pin | Agent mode model Opus 5.5, effort high; Bypass tool permissions on (full access); Default Simplify off |
+| Pin | Agent mode model Opus 5.5, effort high; Bypass tool permissions on (full access). Default Simplify stays at its factory value (on): it adds instructions, it does not rewrite the prompt |
 | New thread (A3) | `cmd+t` (File > New Tab): a new chat tab in the same workspace |
 | Orchestration (C1) | child workspaces (`create_workspace`, `merge_child`) from an Agent chat |
 | Drive (setup) | `recur-cli open <path>` over a local socket; keys |
