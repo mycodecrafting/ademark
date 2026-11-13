@@ -3,8 +3,8 @@
   "ade": "recur",
   "app": {
     "path": "/Applications/Recur.app",
-    "version": "0.6.0+commit.2fc858f6",
-    "bundleSha256": "a73723355c14979c02b7e09e8f95aba0fd2a2a50714b4b09e5967748114f0d56",
+    "version": "0.6.0+commit.fd9637ec",
+    "bundleSha256": "726b0f9bf84bd9cc82ae4b62c537ae6cfa9ddabdd409de19ff3a939f34651a1c",
     "processNames": [
       "recur"
     ]
