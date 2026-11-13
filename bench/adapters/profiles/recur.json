@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "ade": "recur",
+  "app": {
+    "path": "/Applications/Recur.app",
+    "version": "0.6.0+commit.2fc858f6",
+    "bundleSha256": "a73723355c14979c02b7e09e8f95aba0fd2a2a50714b4b09e5967748114f0d56",
+    "processNames": ["recur"]
+  },
+  "window": { "w": 1600, "h": 1000 },
+  "calibration": {
+    "appName": "Recur",
+    "bundleId": "build.recur.app",
+    "composerRect": { "x": 299, "y": 900, "w": 547, "h": 50 },
+    "activeComposerRect": null,
+    "launchComposerRect": null,
+    "threadRect": { "x": 290, "y": 480, "w": 560, "h": 390 },
+    "focusClick": { "x": 570, "y": 915 },
+    "masks": [],
+    "drive": "cli",
+    "dataDirs": ["~/Library/Application Support/Recur", "~/.recur"],
+    "launchAgents": []
+  },
+  "login": { "kind": "agent-cli", "files": [], "signIn": null },
+  "reset": {
+    "seeds": [
+      "Library/Application Support/Recur/recur.db",
+      "Library/Application Support/Recur/local-storage.json",
+      "Library/Application Support/Recur/cursor-attribution.json"
+    ],
+    "jsonKeys": []
+  },
+  "steps": {
+    "afterLaunch": [],
+    "openProject": [
+      {
+        "kind": "run",
+        "argv": ["/Applications/Recur.app/Contents/MacOS/recur-cli", "open", "${worktree}"],
+        "timeoutMs": 60000
+      },
+      { "kind": "wait", "ms": 1500 },
+      { "kind": "keys", "combo": "cmd+1" },
+      { "kind": "wait", "ms": 300 }
+    ],
+    "configure": { "claude": [], "codex": [] },
+    "quit": [{ "kind": "keys", "combo": "cmd+q" }]
+  },
+  "timed": {
+    "launch": [{ "kind": "open", "bundleId": "build.recur.app" }],
+    "newThread": [{ "kind": "keys", "combo": "cmd+t" }],
+    "send": [{ "kind": "enter" }],
+    "longThread": [{ "kind": "keys", "combo": "cmd+alt+right" }],
+    "shortThread": [{ "kind": "keys", "combo": "cmd+alt+left" }]
+  },
+  "waitDone": { "cwd": "worktree", "idleFallback": false },
+  "processes": {
+    "vendorDirs": ["~/Library/Application Support/Recur", "~/.recur"],
+    "launchAgentLabels": [],
+    "teamId": null,
+    "agentExecutables": ["claude", "codex", "/Users/ademark/.local/share/claude/versions/"]
+  },
+  "orchestrationTrigger": { "notCalibrated": "no documented trigger line for child workspaces yet" },
+  "notes": [
+    "Calibrated 2026-11-12 in a UTM macOS 26.6.2 VM (VirtualMac2,1, 10 vCPU, 16 GB, display 1728x1117 pt HiDPI, Dock auto-hidden so the window reaches 1000 pt), local build 0.6.0+commit.2fc858f6, ad-hoc signed.",
+    "openProject: recur-cli open <worktree> finds or creates the project and opens its Working copy with one 'New chat' tab in Agent mode, Opus 5.5, High (from the seed). cmd+1 (Focus agent) focuses the composer; probe-region then read 299,900,547,50.",
+    "newThread cmd+t (File > New Tab) appends a chat tab at the end, composer focused (probe-region found the same rect without a click).",
+    "Relaunch restores the project and its tabs but does not focus the composer: probe-region fails until a click at focusClick 570,915. Quit with cmd+q leaves no recur process.",
+    "A11: the seed thread and the long thread are consecutive tabs, long last. cmd+alt+left (Previous Tab) reaches the seed thread, cmd+alt+right (Next Tab) the long one (checked with two tabs).",
+    "Seed: recur.db (settings: Agent model claude-code/claude-opus-5-5 effort high, bypassPermissions true, Simplify at factory default on; no projects), local-storage.json, cursor-attribution.json. shell.json and window.json are left out so launch opens the default view and the harness sizes the window.",
+    "Masks stay empty: GPUI repaints the whole window."
+  ]
+}
