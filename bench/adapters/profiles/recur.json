@@ -149,10 +149,18 @@
     "longThread": [
       {
         "kind": "keys",
-        "combo": "cmd+alt+right"
+        "combo": "cmd+9"
       }
     ],
     "shortThread": [
+      {
+        "kind": "keys",
+        "combo": "cmd+9"
+      },
+      {
+        "kind": "wait",
+        "ms": 300
+      },
       {
         "kind": "keys",
         "combo": "cmd+alt+left"
@@ -182,11 +190,11 @@
     "openProject: recur-cli open <worktree> finds or creates the project and opens its Working copy with one 'New chat' tab in Agent mode, Opus 5.5, High (from the seed). cmd+1 (Focus agent) focuses the composer; probe-region then read 299,900,547,50.",
     "newThread cmd+t (File > New Tab) appends a chat tab at the end, composer focused (probe-region found the same rect without a click).",
     "Relaunch restores the project and its tabs but does not focus the composer: probe-region fails until a click at focusClick 570,915. Quit with cmd+q leaves no recur process.",
-    "A11: the seed thread and the long thread are consecutive tabs, long last. cmd+alt+left (Previous Tab) reaches the seed thread, cmd+alt+right (Next Tab) the long one (checked with two tabs).",
     "Masks stay empty: GPUI repaints the whole window.",
     "threadRect 285,115,575,760 is the whole message column: Recur lays a thread out from the top, so a short answer sits near y 220 (smoke 2026-11-12: A3 and A4 timed out with the old bottom-half rect 290,480,560,390). steps.quit is empty (AppleScript quit): a keys step needs a pid, and A1 quits when the app may not be running.",
     "Orchestration (C1): the trigger is the line documented in Recur docs, Concepts > Chat modes > Child workspaces. Workers are child workspaces: their own worktrees under ~/.recur/worktrees and their own claude sessions; Claude Code subagents (Agent tool) are disallowed in Recur chats.",
-    "Settings: no seed. steps.configure pins them through the bundled CLI while the app is open (Recur 0.7.0+): recur-cli config set modelAgent claude-code/${model}, flagsAgent {\"effort\":\"${effort}\"}, bypassPermissions true. Factory values are Sonnet 5.5 and bypass off. Simplify stays at its factory default (on). Checked: the values persist in recur.db after quit."
+    "Settings: no seed. steps.configure pins them through the bundled CLI while the app is open (Recur 0.7.0+): recur-cli config set modelAgent claude-code/${model}, flagsAgent {\"effort\":\"${effort}\"}, bypassPermissions true. Factory values are Sonnet 5.5 and bypass off. Simplify stays at its factory default (on). Checked: the values persist in recur.db after quit.",
+    "A11: the long thread is the last chat tab and the seed thread the one before it. longThread is cmd+9 (Navigate > Last Tab, Recur 0.7.1+); shortThread is cmd+9 then cmd+alt+left (Previous Tab). Previous/Next Tab alone wrap around and are relative, so repetition 2 drifted one tab off (smoke 2026-11-13: A11 open rep 2 timed out)."
   ],
   "orchestration": {
     "settings": [],
