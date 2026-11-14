@@ -3,8 +3,8 @@
   "ade": "recur",
   "app": {
     "path": "/Applications/Recur.app",
-    "version": "0.7.1",
-    "bundleSha256": "92c812bffbc62e8942915f9b3f07160dc0bd5cacf0b1bb8f5d055f30e12f6a8f",
+    "version": "0.7.2",
+    "bundleSha256": "493c229ce20d43e7d055975eef70282a0fcf4f37f146f676f087db7ec269f69c",
     "processNames": [
       "recur"
     ]
@@ -186,7 +186,7 @@
   },
   "orchestrationTrigger": "Use child workspaces: one per work item, then merge each into this branch.",
   "notes": [
-    "Calibrated 2026-11-14 on Recur 0.7.1 (release build, Developer ID signed, universal) at 1600x1000 points, in a UTM macOS 26.6.2 VM (VirtualMac2,1, 10 vCPU, 16 GB, display 1920x1200 at 1x, Dock auto-hidden so the window reaches 1000 pt).",
+    "Calibrated 2026-11-14 on Recur 0.7.2 (release build, Developer ID signed, universal) at 1600x1000 points, in a UTM macOS 26.6.2 VM (VirtualMac2,1, 10 vCPU, 16 GB, display 1920x1200 at 1x, Dock auto-hidden so the window reaches 1000 pt).",
     "openProject: recur-cli open <worktree> finds or creates the project and opens its Working copy with one 'New chat' tab in Agent mode, Opus 5.5, High (from the seed). cmd+1 (Focus agent) focuses the composer; probe-region then read 299,900,547,50.",
     "newThread cmd+t (File > New Tab) appends a chat tab at the end, composer focused (probe-region found the same rect without a click).",
     "Relaunch restores the project and its tabs but does not focus the composer: probe-region fails until a click at focusClick 570,915. Quit with cmd+q leaves no recur process.",
