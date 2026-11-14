@@ -3,8 +3,8 @@
   "ade": "recur",
   "app": {
     "path": "/Applications/Recur.app",
-    "version": "0.6.0+commit.1da95a23",
-    "bundleSha256": "9cd92d863cb1569625d2f276e3c45c81d00e2366c5367829aa02728496df5cec",
+    "version": "0.7.0",
+    "bundleSha256": "cad7c703ab2f1ad2d879bc0a86fa8f6ca95cf5c6c4b2eeeb9724df1ec2d79890",
     "processNames": [
       "recur"
     ]
@@ -48,11 +48,7 @@
     "signIn": null
   },
   "reset": {
-    "seeds": [
-      "Library/Application Support/Recur/recur.db",
-      "Library/Application Support/Recur/local-storage.json",
-      "Library/Application Support/Recur/cursor-attribution.json"
-    ],
+    "seeds": [],
     "jsonKeys": []
   },
   "steps": {
@@ -81,8 +77,54 @@
       }
     ],
     "configure": {
-      "claude": [],
-      "codex": []
+      "claude": [
+        {
+          "kind": "run",
+          "argv": [
+            "/Applications/Recur.app/Contents/MacOS/recur-cli",
+            "config",
+            "set",
+            "modelAgent",
+            "claude-code/${model}"
+          ],
+          "timeoutMs": 30000
+        },
+        {
+          "kind": "run",
+          "argv": [
+            "/Applications/Recur.app/Contents/MacOS/recur-cli",
+            "config",
+            "set",
+            "flagsAgent",
+            "{\"effort\":\"${effort}\"}"
+          ],
+          "timeoutMs": 30000
+        },
+        {
+          "kind": "run",
+          "argv": [
+            "/Applications/Recur.app/Contents/MacOS/recur-cli",
+            "config",
+            "set",
+            "bypassPermissions",
+            "true"
+          ],
+          "timeoutMs": 30000
+        }
+      ],
+      "codex": [
+        {
+          "kind": "run",
+          "argv": [
+            "/Applications/Recur.app/Contents/MacOS/recur-cli",
+            "config",
+            "set",
+            "bypassPermissions",
+            "true"
+          ],
+          "timeoutMs": 30000
+        }
+      ]
     },
     "quit": []
   },
@@ -141,10 +183,10 @@
     "newThread cmd+t (File > New Tab) appends a chat tab at the end, composer focused (probe-region found the same rect without a click).",
     "Relaunch restores the project and its tabs but does not focus the composer: probe-region fails until a click at focusClick 570,915. Quit with cmd+q leaves no recur process.",
     "A11: the seed thread and the long thread are consecutive tabs, long last. cmd+alt+left (Previous Tab) reaches the seed thread, cmd+alt+right (Next Tab) the long one (checked with two tabs).",
-    "Seed: recur.db (settings: Agent model claude-code/claude-opus-5-5 effort high, bypassPermissions true, Simplify at factory default on; no projects), local-storage.json, cursor-attribution.json. shell.json and window.json are left out so launch opens the default view and the harness sizes the window.",
     "Masks stay empty: GPUI repaints the whole window.",
     "threadRect 285,115,575,760 is the whole message column: Recur lays a thread out from the top, so a short answer sits near y 220 (smoke 2026-11-12: A3 and A4 timed out with the old bottom-half rect 290,480,560,390). steps.quit is empty (AppleScript quit): a keys step needs a pid, and A1 quits when the app may not be running.",
-    "Orchestration (C1): the trigger is the line documented in Recur docs, Concepts > Chat modes > Child workspaces. Workers are child workspaces: their own worktrees under ~/.recur/worktrees and their own claude sessions; Claude Code subagents (Agent tool) are disallowed in Recur chats."
+    "Orchestration (C1): the trigger is the line documented in Recur docs, Concepts > Chat modes > Child workspaces. Workers are child workspaces: their own worktrees under ~/.recur/worktrees and their own claude sessions; Claude Code subagents (Agent tool) are disallowed in Recur chats.",
+    "Settings: no seed. steps.configure pins them through the bundled CLI while the app is open (Recur 0.7.0+): recur-cli config set modelAgent claude-code/${model}, flagsAgent {\"effort\":\"${effort}\"}, bypassPermissions true. Factory values are Sonnet 5.5 and bypass off. Simplify stays at its factory default (on). Checked: the values persist in recur.db after quit."
   ],
   "orchestration": {
     "settings": [],
